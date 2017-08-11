@@ -1,7 +1,7 @@
 # ..:: Netguru Code College - BestNanny app ::..
 
-[![CircleCI](https://circleci.com/gh/NetguruCodeCollege/netguru_code_college_todo_app.svg?style=svg)](https://circleci.com/gh/NetguruCodeCollege/netguru_code_college_todo_app)
-[![codebeat badge](https://codebeat.co/badges/1c0cc39e-d3f2-4918-b4d1-4b2bf945a107)](https://codebeat.co/projects/github-com-netgurucodecollege-netguru_code_college_todo_app-master)
+[![CircleCI](https://circleci.com/gh/NetguruCodeCollege/team_delta_project.svg?style=svg)](https://circleci.com/gh/NetguruCodeCollege/team_delta_project)
+[![codebeat badge](https://codebeat.co/badges/a4edade8-a5cd-4d06-be38-1fc8797868e3)](https://codebeat.co/projects/github-com-netgurucodecollege-team_delta_project-master)
 
 # Technology stack :gem:
 
