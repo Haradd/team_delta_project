@@ -5,10 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, presence: true, length: { in: 2..30 }
-  validates :last_name, presence: true, length: { min: 2 }
+  validates :last_name, presence: true, length: { minimum: 2 }
   validates :phone, presence: true,
-            format: { with: /^(?:\(?\+?48)?(?:[-\.\(\)\s]*(\d)){9}\)?$/,
-            message: "only allows numbers" }
+                    format: { with: /A(?:\(?\+?48)?(?:[-\.\(\)\s]*(\d)){9}\)?z/,
+                              message: "only allows numbers" }
   validates :city, presence: true
   validates :street, presence: true
 end
