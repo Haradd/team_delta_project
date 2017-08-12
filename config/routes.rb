@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :adverts
   devise_for :users
-  
-  root 'home#index'
+
+  root 'adverts#index'
 
   get 'home/about'
 
