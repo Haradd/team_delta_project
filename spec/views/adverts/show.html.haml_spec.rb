@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "adverts/show", type: :view do
   before(:each) do
     @advert = assign(:advert, Advert.create!(
-      :title => "",
-      :city => "City",
-      :street => "Street",
-      :phone => "Phone"
+                                title: "",
+                                city: "City",
+                                street: "Street",
+                                phone: "Phone"
     ))
   end
 

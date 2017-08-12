@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "adverts/edit", type: :view do
   before(:each) do
     @advert = assign(:advert, Advert.create!(
-      :title => "",
-      :city => "MyString",
-      :street => "MyString",
-      :phone => "MyString"
+                                title: "",
+                                city: "MyString",
+                                street: "MyString",
+                                phone: "MyString"
     ))
   end
 
@@ -14,7 +14,6 @@ RSpec.describe "adverts/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", advert_path(@advert), "post" do
-
       assert_select "input[name=?]", "advert[title]"
 
       assert_select "input[name=?]", "advert[city]"
