@@ -18,3 +18,29 @@
 @import 'utilities/typography';
 
 @import 'framework/overrides';
+
+
+header{
+  .container-fluid{
+    margin: 0 50px;
+
+    .navbar-nav{
+      li{
+        margin: 20px 10px;
+      }
+    }
+  }
+}
+
+footer{
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 20px;
+  position: absolute;
+
+  .footer-wrapper{
+    padding: 40px 0;
+    text-align: center;
+  }
+}

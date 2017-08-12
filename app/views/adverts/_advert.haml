@@ -1,0 +1,6 @@
+%li{:id => "advert-#{advert.id}"}
+  = link_to gravatar_for(advert.user, size: 50), advert.user
+  %span.user= link_to advert.user.name, advert.user
+  %span.content= advert.content
+  %span.timestamp
+    Posted #{time_ago_in_words(advert.created_at)} ago.
