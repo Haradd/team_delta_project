@@ -1,0 +1,27 @@
+%h1 Listing adverts
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th City
+      %th Street
+      %th Phone
+      %th
+      %th
+      %th
+
+  %tbody
+    - @adverts.each do |advert|
+      %tr
+        %td= advert.title
+        %td= advert.city
+        %td= advert.street
+        %td= advert.phone
+        %td= link_to 'Show', advert
+        %td= link_to 'Edit', edit_advert_path(advert)
+        %td= link_to 'Destroy', advert, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Advert', new_advert_path

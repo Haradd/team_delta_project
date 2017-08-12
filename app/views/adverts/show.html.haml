@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @advert.title
+%p
+  %b City:
+  = @advert.city
+%p
+  %b Street:
+  = @advert.street
+%p
+  %b Phone:
+  = @advert.phone
+
+= link_to 'Edit', edit_advert_path(@advert)
+\|
+= link_to 'Back', adverts_path
