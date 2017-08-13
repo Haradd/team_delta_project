@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :adverts
   devise_for :users
-  
+
   root 'adverts#index'
 
   get 'home/about'

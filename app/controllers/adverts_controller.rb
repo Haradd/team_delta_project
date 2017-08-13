@@ -1,5 +1,7 @@
 class AdvertsController < ApplicationController
   before_action :set_advert, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[show index]
+  before_action :correct_user, only: %i[edit update destroy]
 
   # GET /adverts
   # GET /adverts.json
@@ -13,7 +15,7 @@ class AdvertsController < ApplicationController
 
   # GET /adverts/new
   def new
-    @advert = Advert.new
+    @advert = current_user.adverts.build
   end
 
   # GET /adverts/1/edit
@@ -22,7 +24,7 @@ class AdvertsController < ApplicationController
   # POST /adverts
   # POST /adverts.json
   def create
-    @advert = Advert.new(advert_params)
+    @advert = current_user.adverts.build(advert_params)
 
     respond_to do |format|
       if @advert.save
@@ -69,5 +71,10 @@ class AdvertsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def advert_params
     params.require(:advert).permit(:title, :city, :street, :phone)
+  end
+
+  def correct_user
+    @advert = current_user.adverts.find_by(id: params[:id])
+    redirect_to adverts_path, notice: "Hey, that is not your advert!" if @advert.nil?
   end
 end
