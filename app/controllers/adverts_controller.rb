@@ -1,7 +1,7 @@
 class AdvertsController < ApplicationController
   before_action :set_advert, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: [:show, :index]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[show index]
+  before_action :correct_user, only: %i[edit update destroy]
 
   # GET /adverts
   # GET /adverts.json
@@ -75,7 +75,6 @@ class AdvertsController < ApplicationController
 
   def correct_user
     @advert = current_user.adverts.find_by(id: params[:id])
-    redirect_to adverts_path, notice: 'Hey, that is not your advert!' if @advert.nil?
+    redirect_to adverts_path, notice: "Hey, that is not your advert!" if @advert.nil?
   end
-
 end
