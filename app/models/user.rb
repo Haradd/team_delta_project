@@ -9,8 +9,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { in: 2..30 }
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :phone, presence: true,
-                    format: { with: /A(?:\(?\+?48)?(?:[-\.\(\)\s]*(\d)){9}\)?z/,
-                              message: "only allows numbers" }
+                    format: { with: /\A\d{9}\z/,
+                              message: "please type in format: '123456789'" }
   validates :city, presence: true
   validates :street, presence: true
 end
