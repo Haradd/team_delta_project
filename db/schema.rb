@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812114455) do
+ActiveRecord::Schema.define(version: 20170814133952) do
 
   create_table "adverts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
-    t.string "description"
+    t.text "description"
     t.string "city"
     t.string "street"
     t.string "phone"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20170812114455) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_adverts_on_user_id"
+  end
+
+  create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "address"
+    t.float "latitude", limit: 24
+    t.float "longitude", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -42,6 +50,10 @@ ActiveRecord::Schema.define(version: 20170812114455) do
     t.string "phone"
     t.string "city"
     t.string "street"
+    t.string "house_number"
+    t.string "flat_number"
+    t.string "post_code"
+    t.boolean "is_nanny", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
