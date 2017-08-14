@@ -5,5 +5,5 @@ class Advert < ApplicationRecord
   # validates :description, presence: true
   validates :city, presence: true
   validates :street, presence: true
-  validates :phone, presence: true, uniqueness: true
+  validates :phone, presence: true
 end
