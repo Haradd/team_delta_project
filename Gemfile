@@ -50,6 +50,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'rubocop', require: false
+  gem 'ffaker'
 end
 
 group :test do
