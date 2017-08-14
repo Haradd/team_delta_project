@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 20170812114455) do
     t.string "phone"
     t.string "city"
     t.string "street"
+    t.string "house_number"
+    t.string "flat_number"
+    t.string "post_code"
+    t.boolean "is_nanny", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
