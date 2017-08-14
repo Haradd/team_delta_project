@@ -7,7 +7,6 @@ RSpec.describe Advert, type: :model do
     it { is_expected.to validate_presence_of :city }
     it { is_expected.to validate_presence_of :street }
     it { is_expected.to validate_presence_of :phone }
-    it { is_expected.to validate_uniqueness_of :phone }
   end
 
   describe "associations" do
