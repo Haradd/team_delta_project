@@ -10,6 +10,7 @@
             = f.input :first_name, required: true, input_html: { class: 'form-control' }
             = f.input :last_name, required: true, input_html: { class: 'form-control' }
             = f.input :email, required: true, input_html: { class: 'form-control' }
+            = f.input :avatar, as: :file, input_html: { class: 'form-control'}
             = f.input :phone, required: true, input_html: { class: 'form-control' }
             = f.input :city, required: true, input_html: { class: 'form-control' }
             = f.input :street, required: true, input_html: { class: 'form-control' }
@@ -17,7 +18,7 @@
             = f.input :password_confirmation, required: true, input_html: { class: 'form-control' }
           %br/
           .form-actions
-            = f.button :submit, "Sign Up", class: "btn button2"
+            = f.button :submit, "Sign Up", class: "btn btn-primary"
           %br/
       .panel-footer
         = render "devise/shared/links"
