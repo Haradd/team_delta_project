@@ -42,15 +42,15 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      advert = Advert.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      advert = FactoryGirl.create(:advert)
+      get adverts_url params: { id: advert.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      advert = Advert.create! valid_attributes
+      advert = FactoryGirl.create(:advert)
       get :show, params: { id: advert.to_param }, session: valid_session
       expect(response).to be_success
     end
@@ -58,14 +58,15 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      advert = FactoryGirl.build(:advert)
+      get :new, params: { id: advert.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      advert = Advert.create! valid_attributes
+      advert = FactoryGirl.create(:advert)
       get :edit, params: { id: advert.to_param }, session: valid_session
       expect(response).to be_success
     end
@@ -100,14 +101,14 @@ RSpec.describe AdvertsController, type: :controller do
       end
 
       it "updates the requested advert" do
-        advert = Advert.create! valid_attributes
+        advert = FactoryGirl.create(:advert)
         put :update, params: { id: advert.to_param, advert: new_attributes }, session: valid_session
         advert.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the advert" do
-        advert = Advert.create! valid_attributes
+        advert = FactoryGirl.create(:advert)
         put :update, params: { id: advert.to_param, advert: valid_attributes }, session: valid_session
         expect(response).to redirect_to(advert)
       end
@@ -115,7 +116,7 @@ RSpec.describe AdvertsController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        advert = Advert.create! valid_attributes
+        advert = FactoryGirl.create(:advert)
         put :update, params: { id: advert.to_param, advert: invalid_attributes }, session: valid_session
         expect(response).to be_success
       end
@@ -124,14 +125,14 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested advert" do
-      advert = Advert.create! valid_attributes
+      advert = FactoryGirl.create(:advert)
       expect do
         delete :destroy, params: { id: advert.to_param }, session: valid_session
       end.to change(Advert, :count).by(-1)
     end
 
     it "redirects to the adverts list" do
-      advert = Advert.create! valid_attributes
+      advert = FactoryGirl.create(:advert)
       delete :destroy, params: { id: advert.to_param }, session: valid_session
       expect(response).to redirect_to(adverts_url)
     end

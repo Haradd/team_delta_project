@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 20170814143619) do
     t.string "phone"
     t.string "city"
     t.string "street"
+    t.string "house_number"
+    t.string "flat_number"
+    t.string "post_code"
+    t.boolean "is_nanny", default: false
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.integer "avatar_file_size"

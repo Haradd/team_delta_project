@@ -4,7 +4,7 @@ FactoryGirl.define do
     title { FFaker::Lorem.words.join(" ") }
     city { FFaker::Address.city }
     street { FFaker::Address.street_name }
-    phone { FFaker::PhoneNumberAU.mobile_phone_number.gsub!(/\s/, '').slice(1..9) }
+    phone { FFaker::PhoneNumberAU.mobile_phone_number.gsub!(/\s/, "").slice(1..9) }
     description { FFaker::Lorem.sentences }
   end
 end

@@ -7,10 +7,10 @@ RSpec.describe "adverts/show", type: :view do
 
   it "render new advert " do
     render @advert
-    expect(rendered).to have_content 'title'
-    expect(rendered).to have_content 'description'
-    expect(rendered).to have_content 'phone'
-    expect(rendered).to have_content 'city'
-    expect(rendered).to have_content 'street'
+    expect(rendered).to have_content "title"
+    expect(rendered).to have_content "description"
+    expect(rendered).to have_content "phone"
+    expect(rendered).to have_content "city"
+    expect(rendered).to have_content "street"
   end
 end
