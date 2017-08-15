@@ -5,7 +5,7 @@ RSpec.describe "adverts/index", type: :view do
     assign(:adverts,
             [
              FactoryGirl.create(:advert),
-             FactoryGirl.create(:Advert)
+             FactoryGirl.create(:advert)
             ])
   end
 
