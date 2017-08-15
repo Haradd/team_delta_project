@@ -2,9 +2,9 @@ class Advert < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true, length: { in: 5..40,
-                              message: "Title to long, please use description field" }
+                                              message: "Title to long, please use description field" }
   validates :description, presence: true, length: { in: 5..300,
-                              message: "Only 300 caracters allowed!" }
+                                                    message: "Only 300 caracters allowed!" }
   validates :city, presence: true
   validates :street, presence: true
   validates :phone, presence: true,
