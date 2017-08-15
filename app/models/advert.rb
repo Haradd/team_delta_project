@@ -8,5 +8,4 @@ class Advert < ApplicationRecord
   validates :phone, presence: true,
                     format: { with: /\A\d{9}\z/,
                               message: "please type in format: '123456789'" }
-
 end
