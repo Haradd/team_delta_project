@@ -2,19 +2,15 @@ require "rails_helper"
 
 RSpec.describe "adverts/show", type: :view do
   before(:each) do
-    @advert = assign(:advert, Advert.create!(
-                                title: "",
-                                city: "City",
-                                street: "Street",
-                                phone: "Phone"
-    ))
+    @advert = assign(:advert, FactoryGirl.create(:advert))
   end
 
-  it "renders attributes in <p>" do
-    render
-    expect(rendered).to match(//)
-    expect(rendered).to match(/City/)
-    expect(rendered).to match(/Street/)
-    expect(rendered).to match(/Phone/)
+  it "render new advert " do
+    render @advert
+    expect(rendered).to have_content 'title'
+    expect(rendered).to have_content 'description'
+    expect(rendered).to have_content 'phone'
+    expect(rendered).to have_content 'city'
+    expect(rendered).to have_content 'street'
   end
 end

@@ -1,26 +1,16 @@
 require "rails_helper"
 
-RSpec.describe "adverts/edit", type: :view do
-  before(:each) do
-    @advert = assign(:advert, Advert.create!(
-                                title: "",
-                                city: "MyString",
-                                street: "MyString",
-                                phone: "MyString"
-    ))
-  end
-
-  it "renders the edit advert form" do
+RSpec.describe "adverts/edit" do
+  it "renders the edit template" do
+    assign(:advert, [FactoryGirl.create(:advert)])
     render
 
-    assert_select "form[action=?][method=?]", advert_path(@advert), "post" do
-      assert_select "input[name=?]", "advert[title]"
+    expect(view).to render_template(:edit)
+    expect(view).to render_template("edit")
+    expect(view).to render_template("adverts/_form")
+  end
 
-      assert_select "input[name=?]", "advert[city]"
-
-      assert_select "input[name=?]", "advert[street]"
-
-      assert_select "input[name=?]", "advert[phone]"
-    end
+  it "does not render a different template" do
+    expect(view).to_not render_template("index")
   end
 end

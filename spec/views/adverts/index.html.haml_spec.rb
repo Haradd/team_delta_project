@@ -2,27 +2,19 @@ require "rails_helper"
 
 RSpec.describe "adverts/index", type: :view do
   before(:each) do
-    assign(:adverts, [
-             Advert.create!(
-               title: "",
-               city: "City",
-               street: "Street",
-               phone: "Phone"
-             ),
-             Advert.create!(
-               title: "",
-               city: "City",
-               street: "Street",
-               phone: "Phone"
-             )
-           ])
+    assign(:adverts,
+            [
+             FactoryGirl.create(:advert),
+             FactoryGirl.create(:Advert)
+            ])
   end
 
-  it "renders a list of adverts" do
-    render
-    assert_select "tr>td", text: "".to_s, count: 2
-    assert_select "tr>td", text: "City".to_s, count: 2
-    assert_select "tr>td", text: "Street".to_s, count: 2
-    assert_select "tr>td", text: "Phone".to_s, count: 2
+  it "render new advert " do
+    render @advert
+    expect(rendered).to have_content 'title'
+    expect(rendered).to have_content 'description'
+    expect(rendered).to have_content 'phone'
+    expect(rendered).to have_content 'city'
+    expect(rendered).to have_content 'street'
   end
 end
