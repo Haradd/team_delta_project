@@ -173,7 +173,6 @@ RSpec.describe AdvertsController, type: :controller do
     it "redirects to the adverts list" do
       advert = FactoryGirl.create(:advert)
       user = FactoryGirl.create(:user)
-      to_delete = FactoryGirl.create(:advert, user: user)
       sign_in user
       delete :destroy, params: { id: advert.to_param }, session: valid_session
       expect(response).to redirect_to(adverts_url)
