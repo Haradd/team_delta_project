@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 20170814143619) do
     t.index ["user_id"], name: "index_adverts_on_user_id"
   end
 
+  create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "address"
+    t.float "latitude", limit: 24
+    t.float "longitude", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
