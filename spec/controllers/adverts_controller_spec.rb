@@ -53,7 +53,7 @@ RSpec.describe AdvertsController, type: :controller do
   describe "GET #index" do
     it "returns a success response" do
       advert = FactoryGirl.create(:advert)
-      get adverts_url params: { id: advert.to_param }, session: valid_session
+      get :index
       expect(response).to be_success
     end
   end
@@ -69,8 +69,9 @@ RSpec.describe AdvertsController, type: :controller do
   describe "GET #new" do
     it "returns a success response" do
       advert = FactoryGirl.build(:advert)
+      user = FactoryGirl.create(:user)
+      sign_in user
       get :new, params: { id: advert.to_param }, session: valid_session
-
       expect(response).to be_success
     end
   end
@@ -78,6 +79,11 @@ RSpec.describe AdvertsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       advert = FactoryGirl.create(:advert)
+      user = FactoryGirl.create(:user) 
+
+      to_edit = FactoryGirl.create(:advert, user: user)
+      sign_in user
+      
       get :edit, params: { id: advert.to_param }, session: valid_session
       expect(response).to be_success
     end
@@ -143,10 +149,12 @@ RSpec.describe AdvertsController, type: :controller do
   describe "DELETE #destroy" do
     it "destroys the requested advert" do
       advert = FactoryGirl.create(:advert)
-      to_delete = FactoryGirl.create(:advert)
+      user = FactoryGirl.create(:user)
+      to_delete = FactoryGirl.create(:advert, user: user)
+      sign_in user
       expect do
-        delete :destroy, params: { id: to_delete.to_param }, session: valid_session
-      end.to change(Advert, :count).by(-1)
+        delete :destroy, params: { id: to_delete.to_param }
+      end.to change { Advert.count }.by(-1)
     end
 
     it "redirects to the adverts list" do
