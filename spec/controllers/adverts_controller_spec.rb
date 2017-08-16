@@ -110,6 +110,8 @@ RSpec.describe AdvertsController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         post :create, params: { advert: invalid_attributes }, session: valid_session
         expect(response).to be_success
       end
