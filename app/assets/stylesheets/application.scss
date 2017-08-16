@@ -18,6 +18,7 @@
 
 @import 'framework/overrides';
 
+@import 'adverts';
 
 header{
   .container-fluid{
@@ -28,6 +29,24 @@ header{
         margin: 20px 10px;
       }
     }
+  }
+}
+
+#notice-wrapper{
+  width: 100%;
+  //margin: 20px auto 10px auto;
+  //border: 3px solid $icon-red;
+  //border-radius: 10px;
+  background-color: #5276e3;
+  opacity: 0.9;
+  p{
+    padding: 30px 0;
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: aliceblue;
+    letter-spacing: 1px;
   }
 }
 

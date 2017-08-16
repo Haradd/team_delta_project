@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :adverts
+  has_many :adverts, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,4 +13,8 @@ class User < ApplicationRecord
                               message: "please type in format: '123456789'" }
   validates :city, presence: true
   validates :street, presence: true
+
+  has_attached_file :avatar, styles: { medium: "270x270#", small: "100x100#" },
+                             default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 end

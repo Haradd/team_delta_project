@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'simple_form', '~> 3.5'
 
+gem 'paperclip', '~> 5.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -51,6 +52,11 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'rubocop', require: false
+  gem 'ffaker'
+end
+
+group :test do
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 group :development do
