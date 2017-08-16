@@ -79,11 +79,11 @@ RSpec.describe AdvertsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       advert = FactoryGirl.create(:advert)
-      user = FactoryGirl.create(:user) 
+      user = FactoryGirl.create(:user)
 
       to_edit = FactoryGirl.create(:advert, user: user)
       sign_in user
-      
+
       get :edit, params: { id: advert.to_param }, session: valid_session
       expect(response).to be_success
     end
@@ -91,8 +91,11 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
+
       it "creates a new Advert" do
         expect do
+          user = FactoryGirl.create(:user)
+          sign_in user
           post :create, params: { advert: valid_attributes }, session: valid_session
         end.to change(Advert, :count).by(1)
       end
