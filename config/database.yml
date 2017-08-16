@@ -9,17 +9,13 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
 #
-# Configure Using Gemfile
-# gem 'pg'
-#
 default: &default
-  adapter: postgresql
+  adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  socket: /var/run/postgresql/.s.PGSQL.5432
- # username: root
- # password: <%= ENV["PASS"] %>
-  # socket: /var/run/mysqld/mysqld.sock
+  username: root
+  password: <%= ENV["PASS"] %>
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
