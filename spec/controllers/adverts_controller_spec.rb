@@ -101,6 +101,8 @@ RSpec.describe AdvertsController, type: :controller do
       end
 
       it "redirects to the created advert" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         post :create, params: { advert: valid_attributes }, session: valid_session
         expect(response).to redirect_to(Advert.last)
       end
