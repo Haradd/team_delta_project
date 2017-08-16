@@ -12,6 +12,13 @@
 %p
   %b Phone:
   = @advert.phone
+%p
+  %b Address:
+  = @advert.locations.first.address
+%p
+  %b Map:
+  = image_tag "http://maps.google.com/maps/api/staticmap?size=700x400&sensor=false&zoom=16&markers=#{@advert.locations.first.latitude}%2C#{@advert.locations.first.longitude}"
+  
 
 = link_to 'Edit', edit_advert_path(@advert)
 \|
