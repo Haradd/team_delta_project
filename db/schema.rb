@@ -10,31 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814103144) do
+ActiveRecord::Schema.define(version: 20170814143619) do
 
   create_table "adverts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
-    t.string "description"
+    t.text "description"
     t.string "city"
     t.string "street"
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.string "address"
-    t.float "longitude", limit: 24
-    t.float "latitude", limit: 24
     t.index ["user_id"], name: "index_adverts_on_user_id"
-  end
-
-  create_table "geocoders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "address"
-    t.float "latitude", limit: 24
-    t.float "longitude", limit: 24
-    t.bigint "adverts_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["adverts_id"], name: "index_geocoders_on_adverts_id"
   end
 
   create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -63,10 +50,13 @@ ActiveRecord::Schema.define(version: 20170814103144) do
     t.string "phone"
     t.string "city"
     t.string "street"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "adverts", "users"
-  add_foreign_key "geocoders", "adverts", column: "adverts_id"
 end
