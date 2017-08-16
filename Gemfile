@@ -21,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'devise'
 gem 'geocoder'
+gem 'cocoon'
 
 gem 'jquery-rails'
 # Use CoffeeScript for .coffee assets and views
