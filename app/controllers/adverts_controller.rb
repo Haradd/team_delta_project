@@ -7,11 +7,12 @@ class AdvertsController < ApplicationController
   # GET /adverts.json
   def index
     @adverts = Advert.all
-    @adverts = @adverts.by_job_type(params[:job_type]) if params[:job_type].present?
-    @adverts = @adverts.by_city(params[:city]) if params[:city].present?
-
-
+    @adverts = @adverts.by_advert_type(search_params[:advert_type]) if search_params[:advert_type].present?
+    @adverts = @adverts.by_job_type(search_params[:job_type]) if search_params[:job_type].present?
+    @adverts = @adverts.by_city(search_params[:city]) if search_params[:city].present?
+    @adverts = @adverts.by_price(search_params[:price]) if search_params[:price].present?
   end
+
 
   # GET /adverts/1
   # GET /adverts/1.json
@@ -66,6 +67,10 @@ class AdvertsController < ApplicationController
   end
 
   private
+
+  def search_params
+    params.permit(search: [:advert_type, :job_type, :city, :price]).fetch(:search, {})
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_advert

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816114016) do
+ActiveRecord::Schema.define(version: 20170816153736) do
 
   create_table "adverts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170816114016) do
     t.bigint "user_id"
     t.float "price", limit: 24
     t.string "job_type"
+    t.string "advert_type"
     t.index ["user_id"], name: "index_adverts_on_user_id"
   end
 
@@ -32,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170816114016) do
     t.float "longitude", limit: 24
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "advert_id"
+    t.index ["advert_id"], name: "index_locations_on_advert_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -61,8 +64,5 @@ ActiveRecord::Schema.define(version: 20170816114016) do
   end
 
   add_foreign_key "adverts", "users"
-<<<<<<< Updated upstream
-=======
   add_foreign_key "locations", "adverts"
->>>>>>> Stashed changes
 end

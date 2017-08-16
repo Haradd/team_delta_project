@@ -1,3 +1,13 @@
+= simple_form_for "search", url: adverts_path, method: 'get' do |f|
+  = f.input :advert_type, required: true, collection: ['Nanny', 'Child'],
+             label: 'Looking for'
+  = f.input :job_type, required: true, collection: ['Full-time', 'Part-time'],
+             label: 'Job type'
+  = f.input :city, required: true, collection: Advert.distinct.all.pluck(:city),
+             label: 'City'
+  = f.input :price, collection: 1..1000, prompt: "Select your age"
+  = f.button :submit, "Search", class: "btn btn-primary"
+
 %ul
   -@adverts.each do |advert|
     %li.advert
@@ -9,5 +19,5 @@
         .prize-wrapper
           PRIZE
 
-
+= params
 = link_to 'New Advert', new_advert_path
