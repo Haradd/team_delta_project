@@ -10,6 +10,7 @@
             = f.input :title, required: true, input_html: { class: 'form-control' }
             = f.input :description, required: true, input_html: { class: 'form-control' }
             = f.input :price, required: true, label: 'Price per hour', input_html: { class: 'form-control' }
+            = f.input :job_type, required: true, collection: ['Full-time', 'Part-time'], label: 'Choose job type', input_html: { class: 'form-control' }
             = f.input :city, required: true, input_html: { class: 'form-control' }
             = f.input :street, required: true, input_html: { class: 'form-control' }
             = f.input :phone, required: true, input_html: { class: 'form-control' }

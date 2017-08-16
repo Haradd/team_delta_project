@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816112437) do
+ActiveRecord::Schema.define(version: 20170816114016) do
 
   create_table "adverts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170816112437) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.float "price", limit: 24
+    t.string "job_type"
     t.index ["user_id"], name: "index_adverts_on_user_id"
   end
 
