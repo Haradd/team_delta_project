@@ -16,6 +16,7 @@ default: &default
   adapter: postgresql
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  socket: /var/run/postgresql/.s.PGSQL.5432
  # username: root
  # password: <%= ENV["PASS"] %>
   # socket: /var/run/mysqld/mysqld.sock
