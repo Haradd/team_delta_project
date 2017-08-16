@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "locations/edit", type: :view do
   before(:each) do
     @location = assign(:location, Location.create!(
-      :address => "MyString",
-      :latitude => 1.5,
-      :longitude => 1.5
+                                    address: "MyString",
+                                    latitude: 1.5,
+                                    longitude: 1.5
     ))
   end
 
@@ -13,7 +13,6 @@ RSpec.describe "locations/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", location_path(@location), "post" do
-
       assert_select "input[name=?]", "location[address]"
 
       assert_select "input[name=?]", "location[latitude]"
