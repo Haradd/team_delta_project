@@ -29,7 +29,7 @@ RSpec.describe AdvertsController, type: :controller do
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-      "user" => User.first,
+        
       "title" => "Test title",
       "description" => "test description",
       "city" => "New York Test",
@@ -138,9 +138,9 @@ RSpec.describe AdvertsController, type: :controller do
       it "redirects to the advert" do
         user = FactoryGirl.create(:user)
         sign_in user
-        advert = FactoryGirl.create(:advert)
+        advert = FactoryGirl.create(:advert, user: user)
         put :update, params: { id: advert.to_param, advert: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(advert.to_param)
+        expect(response).to redirect_to(advert_path(advert))
       end
     end
 
@@ -148,10 +148,10 @@ RSpec.describe AdvertsController, type: :controller do
       it "displays the 'edit' template)" do
         user = FactoryGirl.create(:user)
         sign_in user
-        advert = FactoryGirl.create(:advert)
-        invalid_attributes = advert.update_attributes(title: "", city: "")
+        advert = FactoryGirl.create(:advert, user: user)
+        
         put :update, params: { id: advert.to_param, advert: invalid_attributes }, session: valid_session
-        expect(response).to render_template("new")
+        expect(response).to render_template('edit')
       end
     end
   end
