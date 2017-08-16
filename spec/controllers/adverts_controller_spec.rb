@@ -78,13 +78,10 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      advert = FactoryGirl.create(:advert)
       user = FactoryGirl.create(:user)
-
-      to_edit = FactoryGirl.create(:advert, user: user)
+      advert = FactoryGirl.create(:advert, user: user)
       sign_in user
-
-      get :edit, params: { id: advert.to_param }, session: valid_session
+      get :edit, params: { id: advert.id } 
       expect(response).to be_success
     end
   end
@@ -153,7 +150,7 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested advert" do
-      advert = FactoryGirl.create(:advert)
+      
       user = FactoryGirl.create(:user)
       to_delete = FactoryGirl.create(:advert, user: user)
       sign_in user

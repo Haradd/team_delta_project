@@ -1,7 +1,7 @@
 class AdvertsController < ApplicationController
   before_action :set_advert, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[show index]
-  before_action :correct_user, only: %i[edit update destroy]
+  before_action :check_advert_belongs_to_current_user, only: %i[edit update destroy]
 
   # GET /adverts
   # GET /adverts.json
@@ -19,7 +19,8 @@ class AdvertsController < ApplicationController
   end
 
   # GET /adverts/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /adverts
   # POST /adverts.json
@@ -73,7 +74,7 @@ class AdvertsController < ApplicationController
     params.require(:advert).permit(:title, :city, :street, :phone, :description)
   end
 
-  def correct_user
+  def check_advert_belongs_to_current_user
     @advert = current_user.adverts.find_by(id: params[:id])
     redirect_to adverts_path, notice: "Hey, that is not your advert!" if @advert.nil?
   end
