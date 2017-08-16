@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "locations/show", type: :view do
   before(:each) do
     @location = assign(:location, Location.create!(
-      :address => "Address",
-      :latitude => 2.5,
-      :longitude => 3.5
+                                    address: "Address",
+                                    latitude: 2.5,
+                                    longitude: 3.5
     ))
   end
 
