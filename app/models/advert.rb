@@ -10,4 +10,5 @@ class Advert < ApplicationRecord
                               message: "please type in format: '123456789'" }
 
   validates :price, presence: true, numericality: { greater_than: 0 }
+  validates :job_type, presence: true;
 end
