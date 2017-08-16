@@ -13,7 +13,6 @@ class AdvertsController < ApplicationController
     @adverts = @adverts.by_price(search_params[:price]) if search_params[:price].present?
   end
 
-
   # GET /adverts/1
   # GET /adverts/1.json
   def show; end
@@ -69,7 +68,7 @@ class AdvertsController < ApplicationController
   private
 
   def search_params
-    params.permit(search: [:advert_type, :job_type, :city, :price]).fetch(:search, {})
+    params.permit(search: %i[advert_type job_type city price]).fetch(:search, {})
   end
 
   # Use callbacks to share common setup or constraints between actions.
