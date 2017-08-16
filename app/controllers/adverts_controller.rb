@@ -7,6 +7,10 @@ class AdvertsController < ApplicationController
   # GET /adverts.json
   def index
     @adverts = Advert.all
+    @adverts = @adverts.by_job_type(params[:job_type]) if params[:job_type].present?
+    @adverts = @adverts.by_city(params[:city]) if params[:city].present?
+
+
   end
 
   # GET /adverts/1

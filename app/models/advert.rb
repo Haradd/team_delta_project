@@ -11,4 +11,7 @@ class Advert < ApplicationRecord
 
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :job_type, presence: true, inclusion: %w(Full-time Part-time);
+
+  scope :by_job_type, ->(type) { where "job_type": "#{type}"}
+  scope :by_city, ->(city) { where "city": "#{city}"}
 end

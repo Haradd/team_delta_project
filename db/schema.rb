@@ -61,4 +61,8 @@ ActiveRecord::Schema.define(version: 20170816114016) do
   end
 
   add_foreign_key "adverts", "users"
+<<<<<<< Updated upstream
+=======
+  add_foreign_key "locations", "adverts"
+>>>>>>> Stashed changes
 end
