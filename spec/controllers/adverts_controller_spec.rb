@@ -107,6 +107,8 @@ RSpec.describe AdvertsController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         post :create, params: { advert: invalid_attributes }, session: valid_session
         expect(response).to be_success
       end
@@ -123,27 +125,33 @@ RSpec.describe AdvertsController, type: :controller do
       # end
 
       it "updates the requested advert" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         advert = FactoryGirl.create(:advert)
         new_attributes = advert.update_attributes(title: "New Title", city: "New city")
         put :update, params: { id: advert.to_param, advert: new_attributes }, session: valid_session
         advert.reload
-        expect(assigns(:advert).title).to eq "New Title"
-        expect(assigns(:advert).city).to eq "New city"
+        expect(advert.title).to eq "New Title"
+        expect(advert.city).to eq "New city"
       end
 
       it "redirects to the advert" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         advert = FactoryGirl.create(:advert)
         put :update, params: { id: advert.to_param, advert: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(advert)
+        expect(response).to redirect_to(advert.to_param)
       end
     end
 
     context "with invalid params" do
       it "displays the 'edit' template)" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         advert = FactoryGirl.create(:advert)
         invalid_attributes = advert.update_attributes(title: "", city: "")
         put :update, params: { id: advert.to_param, advert: invalid_attributes }, session: valid_session
-        expect(rendered).to render_view(:edit)
+        expect(response).to render_template("new")
       end
     end
   end
@@ -160,7 +168,9 @@ RSpec.describe AdvertsController, type: :controller do
     end
 
     it "redirects to the adverts list" do
-      advert = Advert.first
+      advert = FactoryGirl.create(:advert)
+      user = FactoryGirl.create(:user)
+      sign_in user
       delete :destroy, params: { id: advert.to_param }, session: valid_session
       expect(response).to redirect_to(adverts_url)
     end
