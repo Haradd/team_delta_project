@@ -3,8 +3,8 @@ class Advert < ApplicationRecord
 
   validates :title, presence: true, length: { in: 5..40,
                                               message: "Title to long, please use description field" }
-  validates :description, presence: true, length: { in: 5..300,
-                                                    message: "Only 300 caracters allowed!" }
+  validates :description, presence: true, length: { in: 5..500,
+                                                    message: "Only 500 caracters allowed!" }
   validates :city, presence: true
   validates :street, presence: true
   validates :phone, presence: true,
