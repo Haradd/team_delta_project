@@ -9,5 +9,5 @@ class Advert < ApplicationRecord
                     format: { with: /\A\d{9}\z/,
                               message: "please type in format: '123456789'" }
 
-  validates :price, numericality: { greater_than: 0 }
+  validates :price, presence: true, numericality: { greater_than: 0 }
 end
