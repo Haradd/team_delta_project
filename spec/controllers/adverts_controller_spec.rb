@@ -128,18 +128,22 @@ RSpec.describe AdvertsController, type: :controller do
       # end
 
       it "updates the requested advert" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         advert = FactoryGirl.create(:advert)
         new_attributes = advert.update_attributes(title: "New Title", city: "New city")
         put :update, params: { id: advert.to_param, advert: new_attributes }, session: valid_session
         advert.reload
-        expect(assigns(:advert).title).to eq "New Title"
-        expect(assigns(:advert).city).to eq "New city"
+        expect(advert.title).to eq "New Title"
+        expect(advert.city).to eq "New city"
       end
 
       it "redirects to the advert" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         advert = FactoryGirl.create(:advert)
         put :update, params: { id: advert.to_param, advert: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(advert)
+        expect(response).to redirect_to(advert.to_param)
       end
     end
 
