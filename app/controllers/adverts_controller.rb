@@ -70,11 +70,9 @@ class AdvertsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def advert_params
-
-    
-
-    params.require(:advert).permit(:title, :description, :city, :street, :phone, locations_attributes: %i[id address destroy])
-
+    params.require(:advert)
+          .permit(:title, :description, :city, :street, :phone, locations_attributes:
+     %i[id address destroy])
   end
 
   def check_advert_belongs_to_current_user
