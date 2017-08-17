@@ -7,7 +7,5 @@ FactoryGirl.define do
     street { FFaker::Address.street_name }
     phone { FFaker::PhoneNumberAU.mobile_phone_number.gsub!(/\s/, "").slice(1..9) }
     description { FFaker::Lorem.sentence }
-
-
   end
 end
