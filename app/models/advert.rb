@@ -1,5 +1,7 @@
 class Advert < ApplicationRecord
   belongs_to :user
+  has_many :locations, inverse_of: :advert
+  accepts_nested_attributes_for :locations, reject_if: :all_blank, allow_destroy: true
 
   validates :title, presence: true
   validates :description, presence: true

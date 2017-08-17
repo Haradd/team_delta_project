@@ -13,6 +13,14 @@
             = f.input :street, required: true, input_html: { class: 'form-control' }
             = f.input :phone, required: true, input_html: { class: 'form-control' }
           %br/
+          %h3 Locations
+          #locations
+          = f.simple_fields_for :locations do |location|
+            = render 'location_fields', f: location
+          
+          .links
+            = link_to_add_association 'add location', f, :locations
+          
           .form-actions
             = f.button :submit, "Create", class: "btn btn-primary"
           %br/
