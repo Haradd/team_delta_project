@@ -15,11 +15,15 @@
       = link_to advert do
         .image-wrapper
           = image_tag advert.user.avatar.url(:small)
-        .title-wrapper
+        .content-wrapper
           = advert.title
+          .categories
+            = advert.job_type
+          .location
+            = advert.city + ', ' + advert.street
 
         .prize-wrapper
-          PRIZE
+          = advert.price.to_s + '$ ph'
 
 = params
 = link_to 'New Advert', new_advert_path

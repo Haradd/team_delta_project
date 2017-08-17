@@ -37,3 +37,15 @@
   @include sizing($args);
   border-radius: 50%;
 }
+
+@mixin border-box{
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(148,148,148,1);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(148,148,148,1);
+  box-shadow:  0px 0px 3px 0px rgba(148,148,148,1);
+}
+
+@mixin border-box-hover{
+  -webkit-box-shadow: 2px 2px 10px 0 rgba(105,137,219,1);
+  -moz-box-shadow: 2px 2px 10px 0 rgba(105,137,219,1);
+  box-shadow: 2px 2px 10px 0 rgba(105,137,219,1);
+}
