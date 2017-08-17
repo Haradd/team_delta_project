@@ -11,6 +11,7 @@ class AdvertsController < ApplicationController
     @adverts = @adverts.by_job_type(search_params[:job_type]) if search_params[:job_type].present?
     @adverts = @adverts.by_city(search_params[:city]) if search_params[:city].present?
     @adverts = @adverts.by_price(search_params[:price]) if search_params[:price].present?
+    @adverts = Advert.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /adverts/1

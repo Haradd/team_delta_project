@@ -1,6 +1,6 @@
 = simple_form_for "search", url: adverts_path, input_html: { id: 'filter' },
                   method: 'get' do |f|
-  = f.input :advert_type, required: true, collection: ['Nanny', 'Child'],
+  = f.input :advert_type, required: true, collection: ['Care', 'Job'],
              label: 'Looking for'
   = f.input :job_type, required: true, collection: ['Full-time', 'Part-time'],
              label: 'Job type'
@@ -26,3 +26,4 @@
           = advert.price.to_s + '$ ph'
 
 = link_to 'New Advert', new_advert_path
+= will_paginate @adverts
