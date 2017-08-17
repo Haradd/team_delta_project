@@ -1,7 +1,7 @@
 class AdvertsController < ApplicationController
   before_action :set_advert, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[show index]
-  before_action :correct_user, only: %i[edit update destroy]
+  before_action :check_advert_belongs_to_current_user, only: %i[edit update destroy]
 
   # GET /adverts
   # GET /adverts.json
@@ -70,10 +70,14 @@ class AdvertsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def advert_params
+
+    
+
     params.require(:advert).permit(:title, :description, :city, :street, :phone, locations_attributes: %i[id address destroy])
+
   end
 
-  def correct_user
+  def check_advert_belongs_to_current_user
     @advert = current_user.adverts.find_by(id: params[:id])
     redirect_to adverts_path, notice: "Hey, that is not your advert!" if @advert.nil?
   end

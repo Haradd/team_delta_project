@@ -58,6 +58,8 @@ end
 
 group :test do
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -67,11 +69,15 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'pry-rails'
+
   gem 'mysql2', '>= 0.3.18', '< 0.5'
 end
 
 group :production do
   gem 'pg', '~> 0.21.0'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
