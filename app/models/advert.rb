@@ -14,8 +14,8 @@ class Advert < ApplicationRecord
                               message: "please type in format: '123456789'" }
 
   validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :job_type, presence: true, inclusion: JOB_TYPES
-  validates :advert_type, presence: true, inclusion: ADVERT_TYPES
+  validates :job_type, presence: true, inclusion: %w[full_time part_time]
+  validates :advert_type, presence: true, inclusion: %w[job care]
 
   scope :by_advert_type, ->(type) { where "advert_type": type.to_s }
   scope :by_job_type, ->(type) { where "job_type": type.to_s }

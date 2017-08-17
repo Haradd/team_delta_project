@@ -8,13 +8,13 @@
           = f.error_notification
           .form-group
 
-            = f.input :advert_type, required: true, collection: ['Job', 'Care'],
+            = f.input :advert_type, required: true, collection: ['job', 'care'],
                        label: 'Looking for', input_html: { class: 'form-control' }
             = f.input :title, required: true, input_html: { class: 'form-control' }
             = f.input :description, required: true, input_html: { class: 'form-control' }
             = f.input :price, required: true, label: 'Price per hour',
                        input_html: { class: 'form-control' }
-            = f.input :job_type, required: true, collection: ['Full-time', 'Part-time'],
+            = f.input :job_type, required: true, collection: ['full_time', 'part_time'],
                       label: 'Choose job type', input_html: { class: 'form-control' }
             = f.input :city, required: true, input_html: { class: 'form-control' }
             = f.input :street, required: true, input_html: { class: 'form-control' }

@@ -4,7 +4,7 @@
   = f.input :advert_type, required: true, collection: ['care', 'job'],
              label: 'Looking for'
 
-  = f.input :job_type, required: true, collection: ['Full-time', 'Part-time'],
+  = f.input :job_type, required: true, collection: ['full_time', 'part_time'],
              label: false, prompt: 'Job type'
   = f.input :city, required: true, collection: Advert.distinct.all.pluck(:city),
              label: false, prompt: "City"
@@ -26,9 +26,8 @@
             = advert.city + ', ' + advert.street
         .prize-wrapper
           = advert.price.to_s + '$ ph'
-
-
-= will_paginate @adverts
         .data-wrapper
           = advert.created_at.strftime("%d/%m/%Y")
+
+          = will_paginate @adverts
 
