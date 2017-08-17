@@ -1,4 +1,6 @@
 class Advert < ApplicationRecord
+  JOB_TYPES = %w[full_time part_time].freeze
+  ADVERT_TYPES = %w[job care].freeze
   belongs_to :user
   has_many :locations, inverse_of: :advert
   accepts_nested_attributes_for :locations, reject_if: :all_blank, allow_destroy: true
@@ -12,8 +14,8 @@ class Advert < ApplicationRecord
                               message: "please type in format: '123456789'" }
 
   validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :job_type, presence: true, inclusion: %w[Full-time Part-time]
-  validates :advert_type, presence: true, inclusion: %w[Nanny Child]
+  validates :job_type, presence: true, inclusion: JOB_TYPES
+  validates :advert_type, presence: true, inclusion: ADVERT_TYPES
 
   scope :by_advert_type, ->(type) { where "advert_type": type.to_s }
   scope :by_job_type, ->(type) { where "job_type": type.to_s }

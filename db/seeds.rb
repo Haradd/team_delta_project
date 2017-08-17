@@ -1,6 +1,6 @@
-if User.count < 500
+if User.count < 100
   puts "Creating users..."
-  500.times do
+  50.times do
     User.create!(
       first_name: FFaker::Name.first_name,
       last_name: FFaker::Name.last_name,
@@ -18,7 +18,7 @@ end
 
 puts "Creating adverts..."
 # users = User.first
-rand(5).times do
+rand(50).times do
   title_length = rand(10) + 1
   user = rand(500) + 1
   Advert.create!(
@@ -28,6 +28,9 @@ rand(5).times do
     city: FFaker::Address.city,
     street: FFaker::Address.street_name,
     phone: FFaker::PhoneNumberAU.mobile_phone_number.gsub!(/\s/, '').slice(1..9),
+    price: rand(1..100),
+    job_type: JOB_TYPES.sample,
+    advert_type: ADVERT_TYPES.sample
   )
   print "."
 end

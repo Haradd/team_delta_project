@@ -34,7 +34,10 @@ RSpec.describe AdvertsController, type: :controller do
       "description" => "test description",
       "city" => "New York Test",
       "street" => "Testowa",
-      "phone" => "123456789"
+      "phone" => "123456789",
+      "price" => "100",
+      "job_type" => "full_time",
+      "advert_type" => "job"
     }
   end
 
@@ -92,7 +95,7 @@ RSpec.describe AdvertsController, type: :controller do
           user = FactoryGirl.create(:user)
           sign_in user
           post :create, params: { advert: valid_attributes }, session: valid_session
-        end.to change(Advert, :count).by(1)
+        end.to change { Advert.count }.by(1)
       end
 
       it "redirects to the created advert" do
