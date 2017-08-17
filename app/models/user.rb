@@ -16,5 +16,5 @@ class User < ApplicationRecord
 
   has_attached_file :avatar, styles: { medium: "270x270#", small: "160x150#" },
                              default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\z}
 end
