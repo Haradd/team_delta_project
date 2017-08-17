@@ -28,11 +28,21 @@ RSpec.describe AdvertsController, type: :controller do
   # Advert. As you add validations to Advert, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip("Add a hash of attributes valid for your model")
+    {
+
+      "title" => "Test title",
+      "description" => "test description",
+      "city" => "New York Test",
+      "street" => "Testowa",
+      "phone" => "123456789"
+    }
   end
 
   let(:invalid_attributes) do
-    skip("Add a hash of attributes invalid for your model")
+    {
+      "title" => "",
+      "description" => ""
+    }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -42,15 +52,14 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      advert = Advert.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index
       expect(response).to be_success
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      advert = Advert.create! valid_attributes
+      advert = FactoryGirl.create(:advert)
       get :show, params: { id: advert.to_param }, session: valid_session
       expect(response).to be_success
     end
@@ -58,15 +67,20 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      advert = FactoryGirl.build(:advert)
+      user = FactoryGirl.create(:user)
+      sign_in user
+      get :new, params: { id: advert.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      advert = Advert.create! valid_attributes
-      get :edit, params: { id: advert.to_param }, session: valid_session
+      user = FactoryGirl.create(:user)
+      advert = FactoryGirl.create(:advert, user: user)
+      sign_in user
+      get :edit, params: { id: advert.id }
       expect(response).to be_success
     end
   end
@@ -75,11 +89,15 @@ RSpec.describe AdvertsController, type: :controller do
     context "with valid params" do
       it "creates a new Advert" do
         expect do
+          user = FactoryGirl.create(:user)
+          sign_in user
           post :create, params: { advert: valid_attributes }, session: valid_session
         end.to change(Advert, :count).by(1)
       end
 
       it "redirects to the created advert" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         post :create, params: { advert: valid_attributes }, session: valid_session
         expect(response).to redirect_to(Advert.last)
       end
@@ -87,6 +105,8 @@ RSpec.describe AdvertsController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
+        user = FactoryGirl.create(:user)
+        sign_in user
         post :create, params: { advert: invalid_attributes }, session: valid_session
         expect(response).to be_success
       end
@@ -95,43 +115,59 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) do
-        skip("Add a hash of attributes valid for your model")
-      end
+      # let(:new_attributes) do
+      #   {
+      #   "title" => "New Test Title",
+      #   "city" => "New Test City"
+      #   }
+      # end
 
       it "updates the requested advert" do
-        advert = Advert.create! valid_attributes
+        user = FactoryGirl.create(:user)
+        sign_in user
+        advert = FactoryGirl.create(:advert)
+        new_attributes = advert.update_attributes(title: "New Title", city: "New city")
         put :update, params: { id: advert.to_param, advert: new_attributes }, session: valid_session
         advert.reload
-        skip("Add assertions for updated state")
+        expect(advert.title).to eq "New Title"
+        expect(advert.city).to eq "New city"
       end
 
       it "redirects to the advert" do
-        advert = Advert.create! valid_attributes
+        user = FactoryGirl.create(:user)
+        sign_in user
+        advert = FactoryGirl.create(:advert, user: user)
         put :update, params: { id: advert.to_param, advert: valid_attributes }, session: valid_session
-        expect(response).to redirect_to(advert)
+        expect(response).to redirect_to(advert_path(advert))
       end
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        advert = Advert.create! valid_attributes
+      it "displays the 'edit' template)" do
+        user = FactoryGirl.create(:user)
+        sign_in user
+        advert = FactoryGirl.create(:advert, user: user)
+
         put :update, params: { id: advert.to_param, advert: invalid_attributes }, session: valid_session
-        expect(response).to be_success
+        expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "destroys the requested advert" do
-      advert = Advert.create! valid_attributes
+      user = FactoryGirl.create(:user)
+      to_delete = FactoryGirl.create(:advert, user: user)
+      sign_in user
       expect do
-        delete :destroy, params: { id: advert.to_param }, session: valid_session
-      end.to change(Advert, :count).by(-1)
+        delete :destroy, params: { id: to_delete.to_param }
+      end.to change { Advert.count }.by(-1)
     end
 
     it "redirects to the adverts list" do
-      advert = Advert.create! valid_attributes
+      advert = FactoryGirl.create(:advert)
+      user = FactoryGirl.create(:user)
+      sign_in user
       delete :destroy, params: { id: advert.to_param }, session: valid_session
       expect(response).to redirect_to(adverts_url)
     end
