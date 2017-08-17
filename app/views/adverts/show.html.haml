@@ -1,33 +1,25 @@
-%p#notice= notice
+.container-advert
+  .row
+    %h2.title
+      =@advert.title
 
-.container-advert.row
-  %h2.title
-    =@advert.title
+    .col-md-4
+      .image-wrapper
+        = image_tag @advert.user.avatar.url(:medium)
+    .col-md-6
+      = link_to 'Edit', edit_advert_path(@advert) if @advert.user == current_user
+      .description
+        = @advert.description
+  .row
+    .col-md-4
+      .phone
+        = 'Phone: ' + @advert.phone
+      .job-type
+        = @advert.job_type
 
-  .col-md-4
-    .image-wrapper
-      = image_tag @advert.user.avatar.url(:medium)
-  .col-md-6
-
-
-
-%p
-  %b City:
-  = @advert.city
-%p
-  %b Street:
-  = @advert.street
-%p
-  %b Phone:
-  = @advert.phone
-%p
-  %b Address:
-  = @advert.locations.first.address
-%p
-  %b Map:
-  = image_tag "http://maps.google.com/maps/api/staticmap?size=700x400&sensor=false&zoom=16&markers=#{@advert.locations.first.latitude}%2C#{@advert.locations.first.longitude}"
-
-
-= link_to 'Edit', edit_advert_path(@advert)
-\|
-= link_to 'Back', adverts_path
+  .row
+    .col-md-8.col-md-offset-2
+      .map-label
+        = @advert.locations.first.address
+      .map
+        = image_tag "http://maps.google.com/maps/api/staticmap?size=700x400&sensor=false&zoom=16&markers=#{@advert.locations.first.latitude}%2C#{@advert.locations.first.longitude}"
