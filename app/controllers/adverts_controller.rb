@@ -7,6 +7,10 @@ class AdvertsController < ApplicationController
   # GET /adverts.json
   def index
     @adverts = Advert.all
+    @adverts = @adverts.by_advert_type(search_params[:advert_type]) if search_params[:advert_type].present?
+    @adverts = @adverts.by_job_type(search_params[:job_type]) if search_params[:job_type].present?
+    @adverts = @adverts.by_city(search_params[:city]) if search_params[:city].present?
+    @adverts = @adverts.by_price(search_params[:price]) if search_params[:price].present?
   end
 
   # GET /adverts/1
@@ -63,6 +67,10 @@ class AdvertsController < ApplicationController
 
   private
 
+  def search_params
+    params.permit(search: %i[advert_type job_type city price]).fetch(:search, {})
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_advert
     @advert = Advert.find(params[:id])
@@ -71,8 +79,7 @@ class AdvertsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def advert_params
     params.require(:advert)
-          .permit(:title, :description, :city, :street, :phone, locations_attributes:
-     %i[id address destroy])
+          .permit(:advert_type, :title, :description, :city, :street, :phone, :price, :job_type, locations_attributes: %i[id address destroy])
   end
 
   def check_advert_belongs_to_current_user
