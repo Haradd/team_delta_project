@@ -10,11 +10,15 @@
   align-items: center;
   justify-content: center;
 
-  .advert_type, .job_type, .city, .price{
-    display: flex;
-    align-items: center;
-    width: 20%;
+  .search_advert_type, .search_job_type, .search_city, .search_price{
+    margin: 2% 1%;
 
+  }
+
+  .btn{
+    align-self: baseline;
+    margin-top: 2%;
+    margin-left: 1%;
   }
 }
 
