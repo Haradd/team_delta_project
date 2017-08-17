@@ -21,20 +21,7 @@ ActiveRecord::Schema.define(version: 20170816101643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.string "address"
-    t.float "longitude", limit: 24
-    t.float "latitude", limit: 24
     t.index ["user_id"], name: "index_adverts_on_user_id"
-  end
-
-  create_table "geocoders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "address"
-    t.float "latitude", limit: 24
-    t.float "longitude", limit: 24
-    t.bigint "adverts_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["adverts_id"], name: "index_geocoders_on_adverts_id"
   end
 
   create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -65,10 +52,6 @@ ActiveRecord::Schema.define(version: 20170816101643) do
     t.string "phone"
     t.string "city"
     t.string "street"
-    t.string "house_number"
-    t.string "flat_number"
-    t.string "post_code"
-    t.boolean "is_nanny", default: false
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
@@ -78,6 +61,5 @@ ActiveRecord::Schema.define(version: 20170816101643) do
   end
 
   add_foreign_key "adverts", "users"
-  add_foreign_key "geocoders", "adverts", column: "adverts_id"
   add_foreign_key "locations", "adverts"
 end
