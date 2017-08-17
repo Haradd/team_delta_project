@@ -1,12 +1,14 @@
 = simple_form_for "search", url: adverts_path, input_html: { id: 'filter' },
                   method: 'get' do |f|
-  = f.input :advert_type, required: true, collection: ['Care', 'Job'],
+
+  = f.input :advert_type, required: true, collection: ['care', 'job'],
              label: 'Looking for'
+
   = f.input :job_type, required: true, collection: ['Full-time', 'Part-time'],
-             label: 'Job type'
+             label: false, prompt: 'Job type'
   = f.input :city, required: true, collection: Advert.distinct.all.pluck(:city),
-             label: 'City'
-  = f.input :price, collection: 1..1000, prompt: "Select price"
+             label: false, prompt: "City"
+  = f.input :price, collection: 1..1000, label: false, prompt: "Price per hour"
   = f.button :submit, "Search", class: "btn btn-primary"
 
 %ul
@@ -16,14 +18,17 @@
         .image-wrapper
           = image_tag advert.user.avatar.url(:small)
         .content-wrapper
-          = advert.title
-          .categories
+          .title
+            = advert.title
+          .job-type
             = advert.job_type
           .location
             = advert.city + ', ' + advert.street
-
         .prize-wrapper
           = advert.price.to_s + '$ ph'
 
-= link_to 'New Advert', new_advert_path
+
 = will_paginate @adverts
+        .data-wrapper
+          = advert.created_at.strftime("%d/%m/%Y")
+

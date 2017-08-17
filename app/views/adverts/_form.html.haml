@@ -26,7 +26,7 @@
             = render 'location_fields', f: location
 
           .links
-            = link_to_add_association 'add location', f, :locations
+            = link_to_add_association 'Pin on map', f, :locations, class: "btn btn-default"
 
           .form-actions
             = f.button :submit, "Create", class: "btn btn-primary"
