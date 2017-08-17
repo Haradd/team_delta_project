@@ -29,7 +29,7 @@ RSpec.describe AdvertsController, type: :controller do
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-        
+
       "title" => "Test title",
       "description" => "test description",
       "city" => "New York Test",
@@ -52,7 +52,6 @@ RSpec.describe AdvertsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      advert = FactoryGirl.create(:advert)
       get :index
       expect(response).to be_success
     end
@@ -81,14 +80,13 @@ RSpec.describe AdvertsController, type: :controller do
       user = FactoryGirl.create(:user)
       advert = FactoryGirl.create(:advert, user: user)
       sign_in user
-      get :edit, params: { id: advert.id } 
+      get :edit, params: { id: advert.id }
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-
       it "creates a new Advert" do
         expect do
           user = FactoryGirl.create(:user)
@@ -149,16 +147,15 @@ RSpec.describe AdvertsController, type: :controller do
         user = FactoryGirl.create(:user)
         sign_in user
         advert = FactoryGirl.create(:advert, user: user)
-        
+
         put :update, params: { id: advert.to_param, advert: invalid_attributes }, session: valid_session
-        expect(response).to render_template('edit')
+        expect(response).to render_template("edit")
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "destroys the requested advert" do
-      
       user = FactoryGirl.create(:user)
       to_delete = FactoryGirl.create(:advert, user: user)
       sign_in user
