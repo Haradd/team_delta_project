@@ -12,15 +12,15 @@ if User.count < 100
     )
     print '.'
   end
-  puts "500 Users created!"
+  puts "50 Users created!"
 end
 
 
 puts "Creating adverts..."
 # users = User.first
 rand(50).times do
-  title_length = rand(10) + 1
-  user = rand(500) + 1
+  title_length = rand(10) + 2
+  user = rand(50) + 1
   Advert.create!(
     user: User.find(user),
     title: FFaker::Lorem.words(title_length).join(" "),
@@ -29,8 +29,9 @@ rand(50).times do
     street: FFaker::Address.street_name,
     phone: FFaker::PhoneNumberAU.mobile_phone_number.gsub!(/\s/, '').slice(1..9),
     price: rand(1..100),
-    job_type: JOB_TYPES.sample,
-    advert_type: ADVERT_TYPES.sample
+    job_type: %w[full_time part_time].sample,
+    advert_type: %w[job care].sample,
+    locations_attributes: [address: FFaker::Address.city]
   )
   print "."
 end
