@@ -93,6 +93,33 @@
     img{
       @include border-box;
     }
-    
+
+  }
+
+  .description{
+    word-wrap: break-word;
+  }
+
+  .phone{
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid $brand-primary;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin: 5% 15% 1% 5%;
+  }
+
+  .job-type{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 5% 15% 1% 5%;
+
+  }
+
+
+  .map-label{
+    margin-top: 5%;
   }
 }
