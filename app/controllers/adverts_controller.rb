@@ -19,8 +19,7 @@ class AdvertsController < ApplicationController
   end
 
   # GET /adverts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /adverts
   # POST /adverts.json
@@ -71,12 +70,10 @@ class AdvertsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def advert_params
-
     params.require(:advert).permit(:title, :city, :street, :phone, :description)
   end
 
   def check_advert_belongs_to_current_user
-    
     @advert = current_user.adverts.find_by(id: params[:id])
     redirect_to adverts_path, notice: "Hey, that is not your advert!" if @advert.nil?
   end
