@@ -16,13 +16,15 @@
         .image-wrapper
           = image_tag advert.user.avatar.url(:small)
         .content-wrapper
-          = advert.title
-          .categories
+          .title
+            = advert.title
+          .job-type
             = advert.job_type
           .location
             = advert.city + ', ' + advert.street
-
         .prize-wrapper
           = advert.price.to_s + '$ ph'
+        .data-wrapper
+          = advert.created_at.strftime("%d/%m/%Y")
 
 = link_to 'New Advert', new_advert_path
