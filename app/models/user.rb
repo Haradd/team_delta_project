@@ -9,12 +9,12 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { in: 2..30 }
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :phone, presence: true,
-                    format: { with: /\A\d{9}\z/,
+                    format: { with: /[1-9]\d*\d{8}/,
                               message: "please type in format: '123456789'" }
   validates :city, presence: true
   validates :street, presence: true
 
   has_attached_file :avatar, styles: { medium: "270x270#", small: "160x150#" },
                              default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :avatar, content_type: %r{/\Aimage\/.*\z/}
 end
