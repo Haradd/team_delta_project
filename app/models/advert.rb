@@ -5,8 +5,8 @@ class Advert < ApplicationRecord
   has_many :locations, inverse_of: :advert
   accepts_nested_attributes_for :locations, reject_if: :all_blank, allow_destroy: true
 
-  validates :title, presence: true
-  validates :description, presence: true
+  validates :title, presence: true, length: { minimum: 2, maximum: 50 }
+  validates :description, presence: true, length: { minimum: 2, maximum: 400 }
   validates :city, presence: true
   validates :street, presence: true
   validates :phone, presence: true,
