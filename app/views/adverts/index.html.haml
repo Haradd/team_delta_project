@@ -27,4 +27,4 @@
         .data-wrapper
           = advert.created_at.strftime("%d/%m/%Y")
 
-= will_paginate @adverts
+= will_paginate @adverts,  renderer: BootstrapPagination::Rails
