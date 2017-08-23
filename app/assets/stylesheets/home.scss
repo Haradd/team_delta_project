@@ -1,3 +1,24 @@
-// Place all the styles related to the Home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.question{
+  margin: 30px auto;
+  padding: 15px;
+  border: 1px dotted $brand-primary;
+  border-radius: 5px;
+  @include border-box;
+  text-align: center;
+  width: 50%;
+  h3{
+    margin-bottom: 15px;
+  }
+  .answers{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .answer{
+      display: flex;
+      .btn {
+        font-size: 24px;
+
+      }
+    }
+  }
+}

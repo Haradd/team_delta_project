@@ -1,2 +1,10 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+.question
+  %h3
+    I'm looking for:
+  .answers
+    .answer
+      %h4= link_to 'Job', adverts_path( search:{"advert_type"=>"job", "job_type"=>"", "city"=>"", "price"=>""}),
+        class: 'btn btn-primary'
+    .answer
+      %h4= link_to 'Care', adverts_path( search:{"advert_type"=>"care", "job_type"=>"", "city"=>"", "price"=>""}),
+        class: 'btn btn-default'
