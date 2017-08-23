@@ -17,8 +17,8 @@ class Advert < ApplicationRecord
   validates :job_type, presence: true, inclusion: %w[full_time part_time]
   validates :advert_type, presence: true, inclusion: %w[job care]
 
-  scope :by_advert_type, ->(type) { where "advert_type": type.to_s }
-  scope :by_job_type, ->(type) { where "job_type": type.to_s }
-  scope :by_city, ->(city) { where "city": city.to_s }
-  scope :by_price, ->(price) { where("price < ?", price) }
+  scope :by_advert_type, ->(type) { where "advert_type": type.to_s if type.present? }
+  scope :by_job_type, ->(type) { where "job_type": type.to_s if type.present? }
+  scope :by_city, ->(city) { where "city": city.to_s if city.present? }
+  scope :by_price, ->(price) { where("price < ?", price) if price.present? }
 end

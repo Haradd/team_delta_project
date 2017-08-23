@@ -13,7 +13,7 @@ MethodLength:
   Exclude:
     - 'spec/**/*'
 Metrics/AbcSize:
-  Max: 30
+  Max: 25
   Exclude:
     - 'spec/**/*'
 Style/BlockLength:
